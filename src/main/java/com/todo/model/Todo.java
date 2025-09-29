@@ -2,6 +2,7 @@ package com.todo.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Todo {
@@ -17,7 +18,7 @@ public class Todo {
         this.id = UUID.randomUUID();
         this.title = title;
         this.details = details;
-        this.status = Status.ACTIVE; // Default status
+        this.status = Status.ACTIVE;
         this.createdAt = LocalDateTime.now();
     }
 
@@ -37,4 +38,15 @@ public class Todo {
                 createdAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Todo todo = (Todo) o;
+        return Objects.equals(getId(), todo.getId()) && Objects.equals(getTitle(), todo.getTitle()) && Objects.equals(getDetails(), todo.getDetails()) && getStatus() == todo.getStatus() && Objects.equals(getCreatedAt(), todo.getCreatedAt());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getTitle(), getDetails(), getStatus(), getCreatedAt());
+    }
 }
