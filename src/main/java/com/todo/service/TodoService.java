@@ -27,29 +27,26 @@ public class TodoService {
 
     private final BidiMap<UUID, String> userEmailBiMap = new DualHashBidiMap<>();
 
-    // MultiValuedMap maps a user's UUID to their collection of Todos.
     private final MultiValuedMap<UUID, Todo> userTodosMap = new ArrayListValuedHashMap<>();
 
-    // Simple map for storing the full User object by UUID.
     private final Map<UUID, User> userStore = Maps.newHashMap(); // Guava's factory method
 
-    // --- JSON Utility using Jackson ---
     private final ObjectMapper objectMapper;
 
     public TodoService() {
-        // Configure Jackson ObjectMapper
+
         this.objectMapper = new ObjectMapper();
         this.objectMapper.registerModule(new JavaTimeModule()); // For LocalDateTime serialization
-        this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT); // For pretty JSON
+        this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
 
     // ========== USER MANAGEMENT ==========
 
     public String registerUser(String email, String password) {
         try {
-            // --- Guava Preconditions for Input Validation ---
             Preconditions.checkNotNull(email, "Email cannot be null.");
             Preconditions.checkArgument(!email.trim().isEmpty(), "Email cannot be empty.");
+            Preconditions.checkArgument(email.contains("@"), "Invalid email format");
             Preconditions.checkNotNull(password, "Password cannot be null.");
             Preconditions.checkArgument(password.length() >= 6, "Password must be at least 6 characters long.");
             Preconditions.checkState(!userEmailBiMap.containsValue(email), "Email '%s' is already registered.", email);
