@@ -4,7 +4,7 @@ A simple TODO list application built with Java. This project demonstrates the us
 
 ##  Video Demonstration
 
-[**Link to 5-Minute Explainer Video**](https://your-video-link.com)
+[**Link to 5-Minute Explainer Video**]((https://www.loom.com/share/7f1b4301b18141febca18d2f118518ca))
 
 ## Features
 
