@@ -50,8 +50,8 @@ This project was built to specifically demonstrate the following libraries:
 
 2.  **Clone the Repository**:
     ```bash
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-    cd your-repo-name
+    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/acekhalifa/Todo-application.git)
+    cd TodoApp
     ```
 
 3.  **Build and Run**:
